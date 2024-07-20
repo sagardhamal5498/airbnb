@@ -68,4 +68,22 @@ public class ExceptionHandling {
         exceptionDetails.setWebUrl(webRequest.getDescription(false));
         return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ReviewAlreadyExistsException.class)
+    public ResponseEntity<?> reviewAlreadyExistsException(ReviewAlreadyExistsException ex, WebRequest webRequest){
+        ExceptionDetails exceptionDetails = new ExceptionDetails();
+        exceptionDetails.setMessage(ex.getMessage());
+        exceptionDetails.setDateTime(LocalDateTime.now());
+        exceptionDetails.setWebUrl(webRequest.getDescription(false));
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ReviewNotFoundException.class)
+    public ResponseEntity<?> reviewNotFoundException(ReviewNotFoundException ex, WebRequest webRequest){
+        ExceptionDetails exceptionDetails = new ExceptionDetails();
+        exceptionDetails.setMessage(ex.getMessage());
+        exceptionDetails.setDateTime(LocalDateTime.now());
+        exceptionDetails.setWebUrl(webRequest.getDescription(false));
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+    }
 }
